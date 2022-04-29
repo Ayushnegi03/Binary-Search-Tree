@@ -1,0 +1,81 @@
+# Binary Search Tree 
+#Insertion
+#Deletion
+#Searching
+
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+def Inorder(Root):
+    if root is not None:
+        Inorder(root.left)
+        print(str(Root.key) + " ", end=' ')
+        Inorder(Root.right)
+def Insert(node, key):
+    if node is None:
+        return Node(key)
+    if key < node.key:
+        node.left = Insert(node.left, key)
+    else:
+        node.right = Insert(node.right, key)
+    return node
+def MinValueNode(node):
+    current = node
+    while(current.left is not None):
+        current = current.left
+    return current
+def DeleteNode(Root, key):
+    if root is None:
+        return Root
+    if key < Root.key:
+        Root.left = DeleteNode(Root.left, key)
+    elif(key > Root.key):
+        Root.right = DeleteNode(Root.right, key)
+    else:
+        if Root.left is None:
+            tmp = Root.right
+            Root = None
+            return tmp
+        elif Root.right is None:
+            tmp = Root.left
+            Root = None
+            return temp
+        tmp = MinValueNode(Root.right)
+        Root.key = tmp.key
+        Root.right = DeleteNode(Root.right, temp.key)
+    return Root
+Root = None
+Root=Node(24)
+Root = insert(Root, 12)
+Root = insert(Root, 34)
+Root = insert(Root, 21)
+Root = insert(Root, 16)
+Root = insert(Root, 7)
+Root = insert(Root, 10)
+Root = insert(Root, 14)
+Root = insert(Root, 45)
+Root = insert(Root, 30)
+Root = insert(Root, 27)
+print("Inorder traversal: ", end=' ')
+Inorder(Root)
+print("\nDelete 12")
+print("Delete 34")
+Root = DeleteNode(Root, 12)
+Root = DeleteNode(Root, 34)
+print("Inorder traversal: ", end=' ')
+Inorder(Root)
+#         24
+#        /  \
+#      12     34
+#     /  \   /  \
+#    7   21 27  45
+#    \   /   \
+#    10 16    30
+           
+#Output-
+#Inorder traversal:  7  10  12  14  16  21  24  27  30  34  45  
+#Delete 12
+#Delete 34
+#Inorder traversal:  7  10  14  16  21  24  27  30  45
