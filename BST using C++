@@ -1,0 +1,75 @@
+//Binary Search Tree
+#include<iostream>
+using namespace std;
+struct BSTNode
+{
+	int DATA; 
+	BSTNode* Left;
+	BSTNode* Right;
+};
+BSTNode* GetNewNode(int DATA) 
+{
+	BSTNode* newNode = new BSTNode();
+	newNode->DATA = DATA;
+	newNode->Left = newNode->Right = NULL;
+	return newNode;
+}
+BSTNode* Insert(BSTNode* root,int DATA) 
+{
+	if(root == NULL)
+	{ 
+		root = GetNewNode(DATA);
+	}
+	else if(DATA <= root->DATA) 
+	{
+		root->Left = Insert(root->Left,DATA);
+	}
+	else 
+	{
+		root->Right = Insert(root->Right,DATA);
+	}
+	return root;
+}
+bool Search(BSTNode* root,int DATA) 
+{
+	if(root == NULL) 
+	{
+		return false;
+	}
+	else if(root->DATA == DATA) 
+	{
+		return true;
+	}
+	else if(DATA <= root->DATA) 
+	{
+		return Search(root->Left,DATA);
+	}
+	else
+	{
+		return Search(root->Right,DATA);
+	}
+}
+int main()
+{
+	BSTNode* root = NULL;  
+	root = Insert(root,15);	
+	root = Insert(root,20);	
+	root = Insert(root,21);
+	root = Insert(root,52);
+	root = Insert(root,28);
+	root = Insert(root,54);
+	root = Insert(root,11);
+	root = Insert(root,7);
+	root = Insert(root,1);
+	int number=7;
+	cout<<"Here is a Binary Search Tree:"<<endl;
+	cout<<"Element:"<<number<<endl;
+	if(Search(root,number) == true) 
+	cout<<"Found in an array \n";
+	else
+	cout<<"Not Found\n";
+}
+//Output-
+//Here is a Binary Search Tree:
+//Element:7
+//Found in an array 
