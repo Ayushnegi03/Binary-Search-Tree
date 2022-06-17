@@ -69,7 +69,7 @@ int main()
 	else
 	cout<<"Not Found\n";
 }
-//Output-
+//Output->
 //Here is a Binary Search Tree:
 //Element:7
 //Found in an array 
